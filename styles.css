@@ -4,9 +4,6 @@ html {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    
-
-    
 }
 
 body {
@@ -14,17 +11,26 @@ body {
     text-align: center;
 }
 
+#sketchPad {
+    display: flex;
+    justify-content: center;
+}
+
+
 .gridContainer {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     background: yellow;
 }
-.pixel {
-    width: 15px;
-    height: 15px;
-    background: grey;
-    gap: 20px;
-    /* border: 1px solid lightblue; */
 
+.pixel {
+    height: 15px;
+    width: 15px;
+    border: 1px solid lightblue;
+    background: grey;
+}
+
+.pixel:hover {
+    background-color: yellow;
 }
