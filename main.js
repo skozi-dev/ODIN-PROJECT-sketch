@@ -1,15 +1,29 @@
-/* Create variables for grid */
-const gridSize = 30;
-const cellSize = 20;
-
-/*  Get the Sketchpad element */
+/*  Get all sketchpad elements */
 const sketchPad = document.querySelector('#sketchPad');
-
-/* Create the grid */
+const createGrid = document.querySelector('.createGrid');
+const resetButton = document.querySelector('.reset');
+const colorButton = document.querySelector('.color');
+const inputContainer = document.querySelector('.inputContainer');
 const gridContainer = document.createElement('div');
-gridContainer.className = 'gridContainer';
-gridContainer.style.width = `${gridSize * cellSize + gridSize * 2}px`; // dynamic resizing of grid plus 2px per pixel outline
-sketchPad.appendChild(gridContainer);
+
+/* Create variables for grid */
+let gridSize = 0;
+const cellSize = 10;
+
+function getGridSize() {
+	gridSize = document.getElementById('input').value;
+
+	/* Create the grid */
+	if (gridSize <= 100 && gridSize >= 2) {
+		gridContainer.className = 'gridContainer';
+		gridContainer.style.width = `${gridSize * cellSize + gridSize * 2}px`; // dynamic resizing of grid plus 2px per pixel outline
+		sketchPad.appendChild(gridContainer);
+	} else {
+		const error = document.createElement('p');
+		error.textContent = 'Choose a number between 2 and 100.';
+		inputContainer.appendChild(error);
+	}
+}
 
 /* Create the cells of the grid */
 function createSketchpad(size) {
@@ -32,4 +46,9 @@ function createSketchpad(size) {
 	}
 }
 
-createSketchpad(gridSize);
+createGrid.addEventListener('click', () => {
+	gridContainer.textContent = '';
+
+	getGridSize();
+	createSketchpad(gridSize);
+});

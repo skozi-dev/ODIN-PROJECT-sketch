@@ -9,18 +9,18 @@
 
 	<body>
 		<h1>Etch-A-Sketch</h1>
+
+		<div id="sketchPad"></div>
 		<div class="controlContainer">
 			<div class="inputContainer">
 				<span>Grid Size: </span>
-				<input type="text" placeholder="2 - 200" />
-				<button>Set</button>
+				<input id="input" type="text" placeholder="2 - 100" />
+				<button class="createGrid">Create Grid</button>
 			</div>
 
-			<button>Color</button>
-			<button>Reset</button>
+			<button class="color">Color</button>
+			<button class="reset">Reset</button>
 		</div>
-
-		<div id="sketchPad"></div>
 		<script src="main.js"></script>
 	</body>
 </html>
