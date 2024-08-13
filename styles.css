@@ -46,12 +46,10 @@ body {
 
 .pixelRow {
     display: flex;
-    background-color: lightgrey;
-    border: 1px solid lightblue;
     flex: 1;
 }
 .pixelCol {
-    background-color: lightgrey;
+    background-color: #f4f0e8;
     border: 1px solid lightblue;
     flex: 1;
 }
