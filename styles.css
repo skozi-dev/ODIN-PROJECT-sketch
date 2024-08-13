@@ -49,7 +49,7 @@ body {
     flex: 1;
 }
 .pixelCol {
-    background-color: #f4f0e8;
+    background: #f4f0e8;
     border: 1px solid lightblue;
     flex: 1;
 }
