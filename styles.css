@@ -23,19 +23,36 @@ body {
     align-items: center;
     gap: 15px;    
     margin-top: 44px;
-    
-}
 
+}
 
 .gridContainer {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: 44px;
-    width: 500px;
-    height: 500px;
-    border: solid black 3px;
+    border: solid black 4px;
+    
 }
 
+.canvas {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    flex-direction: column;
+    width: 600px;
+    height: 600px;
+}
 
-
+.pixelRow {
+    display: flex;
+    background-color: lightgrey;
+    border: 1px solid lightblue;
+    flex: 1;
+}
+.pixelCol {
+    background-color: lightgrey;
+    border: 1px solid lightblue;
+    flex: 1;
+}
 
