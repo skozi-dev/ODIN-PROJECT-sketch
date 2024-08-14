@@ -1,5 +1,22 @@
 const canvas = document.querySelector('.canvas');
-const numPixels = 16;
+const setSizeButton = document.querySelector('.setSize');
+const errorContainer = document.querySelector('.errorContainer');
+
+let numPixels = 0;
+
+function setGrid() {
+    numPixels = document.getElementById('inputSize').value;
+
+    if (numPixels < 2 || numPixels > 100) {
+        const pError = document.createElement('p');
+        pError.textContent = 'Please select a grid size between 2 and 100';
+        pError.style.color = 'red';
+        errorContainer.append(pError);
+    } else {
+        errorContainer.textContent = '';
+        createGrid();
+    }
+}
 
 /* Create a dynamic grid */
 function createGrid() {
@@ -22,4 +39,7 @@ function createGrid() {
     }
 }
 
-createGrid();
+setSizeButton.addEventListener('click', () => {
+    canvas.textContent = '';
+    setGrid();
+});
