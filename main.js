@@ -1,11 +1,25 @@
 const canvas = document.querySelector('.canvas');
+const body = document.querySelector('body'); //for testing purposes, delete when completed
 const setSizeButton = document.querySelector('.setSize');
 const errorContainer = document.querySelector('.errorContainer');
+const randomButton = document.querySelector('.randomColor');
 
-let numPixels = 0;
+/* Add button functionality*/
+randomButton.addEventListener('click', randomColor);
 
+/* Set Global Variables*/
+let numPixels = 16;
+let drawColor = 'black';
+
+/* Get the user */
+setSizeButton.addEventListener('click', () => {
+    canvas.textContent = '';
+    setGrid();
+});
+
+/*  */
 function setGrid() {
-    numPixels = document.getElementById('inputSize').value;
+    numPixels = document.getElementById('userInput').value;
 
     if (numPixels < 2 || numPixels > 100) {
         const pError = document.createElement('p');
@@ -13,7 +27,7 @@ function setGrid() {
         pError.style.color = 'red';
         errorContainer.append(pError);
     } else {
-        errorContainer.textContent = '';
+        errorContainer.textContent = ''; // clears error message
         createGrid();
     }
 }
@@ -30,16 +44,25 @@ function createGrid() {
             pixelCol.classList.add('pixelCol', 'pixel');
             pixelRow.append(pixelCol);
             pixelCol.addEventListener('mouseover', function () {
-                pixelCol.style.background = 'red';
+                pixelCol.style.background = drawColor;
             });
         }
-        pixelRow.addEventListener('mouseover', function () {
-            pixelRow.style.background = 'red';
-        });
     }
 }
 
-setSizeButton.addEventListener('click', () => {
-    canvas.textContent = '';
-    setGrid();
-});
+/*  */
+function draw() {
+    pixelRow.addEventListener('mouseover', function () {
+        pixelRow.style.background = 'drawColor';
+    });
+}
+
+function randomColor() {
+    const rgb = [0, 0, 0];
+
+    for (let i = 0; i < rgb.length; i++) {
+        rgb[i] = Math.floor(Math.random() * 256);
+    }
+
+    drawColor = `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`;
+}
