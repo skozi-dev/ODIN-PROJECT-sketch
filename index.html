@@ -4,23 +4,34 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="styles.css" />
+        <script src="main.js" defer></script>
         <title>Etch-A-Sketch</title>
     </head>
-
     <body>
-        <h1>Etch-A-Sketch</h1>
+        <div class="container">
+            <h1 id="title">Etch-A-Sketch</h1>
 
-        <div id="sketchPad"></div>
-        <div class="controlContainer">
-            <div class="inputContainer">
-                <span>Grid Size: </span>
-                <input id="input" type="text" placeholder="2 - 100" />
-                <button class="createGrid">Create Grid</button>
+            <div class="controlsContainer">
+                <div class="gridControls">
+                    <label>Grid Size: </label>
+                    <input type="text" placeholder="Grid Size" id="userInput" />
+                    <button type="button" class="setSize">Set</button>
+                    <div class="errorContainer"></div>
+                </div>
+                <div class="colorControls">
+                    <div class="colorSetContainer">
+                        <button type="button" class="randomColor">Random</button>
+                        <button type="button">Color</button>
+                        <button type="button">Color</button>
+                        <button type="button">Color</button>
+                        <button type="button">Reset</button>
+                    </div>
+                </div>
             </div>
 
-            <button class="color">Color</button>
-            <button class="reset">Reset</button>
+            <div class="gridContainer">
+                <div class="canvas"></div>
+            </div>
         </div>
-        <script src="main.js"></script>
     </body>
 </html>

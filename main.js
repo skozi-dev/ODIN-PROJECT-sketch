@@ -1,53 +1,68 @@
-/*  Get all sketchpad elements */
-const sketchPad = document.querySelector('#sketchPad');
-const createGrid = document.querySelector('.createGrid');
-const resetButton = document.querySelector('.reset');
-const colorButton = document.querySelector('.color');
-const inputContainer = document.querySelector('.inputContainer');
-const gridContainer = document.createElement('div');
+const canvas = document.querySelector('.canvas');
+const body = document.querySelector('body'); //for testing purposes, delete when completed
+const setSizeButton = document.querySelector('.setSize');
+const errorContainer = document.querySelector('.errorContainer');
+const randomButton = document.querySelector('.randomColor');
 
-/* Create variables for grid */
-let gridSize = 0;
-const cellSize = 10;
+/* Add button functionality*/
+randomButton.addEventListener('click', randomColor);
 
-function getGridSize() {
-    gridSize = document.getElementById('input').value;
+/* Set Global Variables*/
+let numPixels = 16;
+let drawColor = 'black';
 
-    /* Create the grid */
-    if (gridSize <= 100 && gridSize >= 2) {
-        gridContainer.className = 'gridContainer';
-        gridContainer.style.width = `${gridSize * cellSize + gridSize * 2}px`; // dynamic resizing of grid plus 2px per pixel outline
-        sketchPad.appendChild(gridContainer);
-    } else {
-        const error = document.createElement('p');
-        error.textContent = 'Choose a number between 2 and 100.';
-        inputContainer.appendChild(error);
-    }
-}
-
-/* Create the cells of the grid */
-function createSketchpad(size) {
-    let gridSquared = size * size;
-    for (let i = 1; i <= gridSquared; i++) {
-        const pixel = document.createElement('div');
-        pixel.className = 'pixel';
-        pixel.style.cssText = `height: ${cellSize}px; 
-            width: ${cellSize}px; 
-            border: 1px solid lightblue;
-            background-color: #f4f0e8;`;
-
-        gridContainer.append(pixel);
-
-        /* Create a hover effect for cells */
-        pixel.addEventListener('mouseover', () => {
-            pixel.style.background = 'red';
-        });
-    }
-}
-
-createGrid.addEventListener('click', () => {
-    gridContainer.textContent = '';
-
-    getGridSize();
-    createSketchpad(gridSize);
+/* Get the user */
+setSizeButton.addEventListener('click', () => {
+    canvas.textContent = '';
+    setGrid();
 });
+
+/*  */
+function setGrid() {
+    numPixels = document.getElementById('userInput').value;
+
+    if (numPixels < 2 || numPixels > 100) {
+        const pError = document.createElement('p');
+        pError.textContent = 'Please select a grid size between 2 and 100';
+        pError.style.color = 'red';
+        errorContainer.append(pError);
+    } else {
+        errorContainer.textContent = ''; // clears error message
+        createGrid();
+    }
+}
+
+/* Create a dynamic grid */
+function createGrid() {
+    for (let i = 0; i < numPixels; i++) {
+        const pixelRow = document.createElement('div');
+        pixelRow.classList.add('pixelRow', 'pixel');
+        canvas.append(pixelRow);
+
+        for (let k = 0; k < numPixels; k++) {
+            const pixelCol = document.createElement('div');
+            pixelCol.classList.add('pixelCol', 'pixel');
+            pixelRow.append(pixelCol);
+            pixelCol.addEventListener('mouseover', function () {
+                pixelCol.style.background = drawColor;
+            });
+        }
+    }
+}
+
+/*  */
+function draw() {
+    pixelRow.addEventListener('mouseover', function () {
+        pixelRow.style.background = 'drawColor';
+    });
+}
+
+function randomColor() {
+    const rgb = [0, 0, 0];
+
+    for (let i = 0; i < rgb.length; i++) {
+        rgb[i] = Math.floor(Math.random() * 256);
+    }
+
+    drawColor = `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`;
+}
